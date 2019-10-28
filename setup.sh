@@ -108,6 +108,14 @@ BACKEND_URL="$(curl GET -H "Authorization: Bearer $ACCESS_TOKEN" https://europe-
 
 echo $BACKEND_URL
 
+while IFS= read -r line
+do
+    case "$line" in
+       *BACKEND_URL*) printf "%s\n" "${line/BACKEND_URL/$BACKEND_URL}" ;;
+       *) printf "%s\n" "$line" ;;
+    esac
+done < cloudfunction/tvguide/index.js
+
 bold "Eval the templates & deploy CF..."
 gcloud functions deploy tvguide --region=$REGION \
 --memory=512MB \

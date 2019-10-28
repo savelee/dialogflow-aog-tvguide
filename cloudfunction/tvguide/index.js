@@ -1,4 +1,4 @@
-const TVGUIDE_WEBSERVICE = '$BACKEND_URL';
+const TVGUIDE_WEBSERVICE = 'BACKEND_URL';
 const { WebhookClient } = require('dialogflow-fulfillment');
 const rp = require('request-promise');
 const moment = require('moment');
