@@ -13,7 +13,14 @@ PROJECT_ID=$(gcloud info --format='value(config.project)')
 SERVICE_ACCOUNT_NAME="tvguide-app"
 REGION=europe-west1
 GCLOUD_STORAGE_BUCKET_NAME=tvguidebucket
+
+gcloud iam service-accounts keys create ../master.json \
+  --iam-account $SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
+
+gcloud auth activate-service-account --key-file ../master.json
 ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
+
+GOOGLE_APPLICATION_CREDENTIALS=../master.json
 
 bold "Create a Dialogflow Agent..."
 echo $ACCESS_TOKEN
@@ -29,6 +36,6 @@ curl -X POST \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json; charset=utf-8" \
 -d $IMPORTFILES \
-https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:import
+https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:restore
 
 bold "Agent Setup Complete!"
