@@ -100,7 +100,7 @@ do
        *) echo "$line" >> cloudfunction/tvguide/index.js ;;
     esac
 done < cloudfunction/tvguide/index-old.js
-echo "completed"
+echo "};" >> cloudfunction/tvguide/index.js
 
 bold "Deploy Cloud Function..."
 gcloud functions deploy tvguide --region=$REGION \
@@ -124,7 +124,7 @@ do
       *) echo "$line" >> dialogflow/agent/agent.json ;;
     esac
 done < dialogflow/agent/agent-old.json
-echo "completed"
+echo "}" >> dialogflow/agent/agent.json
 
 bold "Zipping Intents..."
 zip -r dialogflow/agent/agent.zip dialogflow/agent
