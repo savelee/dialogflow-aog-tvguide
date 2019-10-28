@@ -1,0 +1,9 @@
+{
+  "id": "1a12e300-7ed9-44c9-8924-8f02f35ea9d9",
+  "name": "channel",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

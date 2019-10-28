@@ -1,0 +1,63 @@
+{
+  "id": "04bb0598-ea21-4794-b464-888730535a92",
+  "name": "Channel Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "GET_BY_CHANNEL",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "f5e37986-8392-402f-af23-79b0fe59ee13",
+          "required": true,
+          "dataType": "@channel",
+          "name": "channel",
+          "value": "$channel",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "On which channel?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "id": "4aa83d75-211b-44b2-94a6-350b834690de",
+          "required": false,
+          "dataType": "@sys.time",
+          "name": "time",
+          "value": "$time",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "condition": "",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

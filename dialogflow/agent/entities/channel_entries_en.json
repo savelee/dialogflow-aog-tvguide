@@ -1,0 +1,65 @@
+[
+  {
+    "value": "1",
+    "synonyms": [
+      "1",
+      "Net 1, Net Station 1"
+    ]
+  },
+  {
+    "value": "2",
+    "synonyms": [
+      "2",
+      "Net 2, Net Station 2"
+    ]
+  },
+  {
+    "value": "3",
+    "synonyms": [
+      "3",
+      "Net 3, Net Station 3"
+    ]
+  },
+  {
+    "value": "4",
+    "synonyms": [
+      "4",
+      "RTL 4"
+    ]
+  },
+  {
+    "value": "5",
+    "synonyms": [
+      "5",
+      "Movie Channel"
+    ]
+  },
+  {
+    "value": "6",
+    "synonyms": [
+      "6",
+      "Sports Channel"
+    ]
+  },
+  {
+    "value": "7",
+    "synonyms": [
+      "7",
+      "Comedy Central"
+    ]
+  },
+  {
+    "value": "8",
+    "synonyms": [
+      "8",
+      "National Geographic"
+    ]
+  },
+  {
+    "value": "9",
+    "synonyms": [
+      "9",
+      "MTV"
+    ]
+  }
+]

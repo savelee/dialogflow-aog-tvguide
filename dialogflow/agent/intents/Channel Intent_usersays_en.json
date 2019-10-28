@@ -1,0 +1,228 @@
+[
+  {
+    "id": "0286de97-1911-4491-89f1-78475b3c2d06",
+    "data": [
+      {
+        "text": "What\u0027s on ",
+        "userDefined": false
+      },
+      {
+        "text": "Comedy Central",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      },
+      {
+        "text": " from ",
+        "userDefined": false
+      },
+      {
+        "text": "10am",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6189ea34-c276-4b5a-9957-9eea5131c81a",
+    "data": [
+      {
+        "text": "What is on TV ",
+        "userDefined": false
+      },
+      {
+        "text": "at noon",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "00f26bd1-337f-4b4f-b735-3bc2e0c49917",
+    "data": [
+      {
+        "text": "What will be on ",
+        "userDefined": false
+      },
+      {
+        "text": "MTV",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      },
+      {
+        "text": " at ",
+        "userDefined": false
+      },
+      {
+        "text": "3pm",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "778b537e-bb0b-4862-b87f-2e83257060b9",
+    "data": [
+      {
+        "text": "What\u0027s on TV?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "ef314ae4-7c9a-4184-b5f3-fad6a3ae64da",
+    "data": [
+      {
+        "text": "What\u0027s on channel ",
+        "userDefined": false
+      },
+      {
+        "text": "MTV",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d2ac39ce-c931-49a6-a115-8b32500e08e7",
+    "data": [
+      {
+        "text": "What can I watch ",
+        "userDefined": false
+      },
+      {
+        "text": "at 7 PM",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "c6164e3d-a491-4792-a587-40777f87dfa2",
+    "data": [
+      {
+        "text": "What\u0027s currently on TV?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "2996f8a7-f20a-4624-ab6d-a57b2bcfbe37",
+    "data": [
+      {
+        "text": "What show will start ",
+        "userDefined": false
+      },
+      {
+        "text": "at 8 PM",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": false
+      },
+      {
+        "text": " on ",
+        "userDefined": false
+      },
+      {
+        "text": "National Geographic",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b87c5f00-7fba-41c8-8983-e820b885125d",
+    "data": [
+      {
+        "text": "What\u0027s playing on ",
+        "userDefined": false
+      },
+      {
+        "text": "Comedy Central",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e725c573-aafe-49ff-85f2-88662217f82b",
+    "data": [
+      {
+        "text": "What\u0027s on ",
+        "userDefined": false
+      },
+      {
+        "text": "MTV",
+        "alias": "channel",
+        "meta": "@channel",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
