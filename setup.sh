@@ -104,6 +104,8 @@ gcloud beta run deploy --image gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide \
 BACKEND_URL=curl GET -H "Authorization: Bearer $ACCESS_TOKEN" https://europe-west1-run.googleapis.com/apis/serving.knative.dev/v1/namespaces/${GOOGLE_CLOUD_PROJECT}/services \
 | jq -r '.items[0].status.url'
 
+echo $BACKEND_URL
+
 bold "Eval the templates & deploy CF..."
 envsubst < cloudfunction/tvguide/index.js | gcloud functions deploy tvguide --region=$REGION \
 --memory=512MB \
