@@ -111,6 +111,7 @@ envsubst < cloudfunction/tvguide/index.js | gcloud functions deploy tvguide --re
 --source=cloudfunction/tvguide \
 --stage-bucket=$GCLOUD_STORAGE_BUCKET_NAME \
 --timeout=60s \
+--trigger-http
 --entry-point=tvguide
 
 bold "Setup & Deployment complete!"
