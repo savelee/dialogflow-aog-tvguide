@@ -98,13 +98,15 @@ BACKEND_URL="$(curl GET -H "Authorization: Bearer $ACCESS_TOKEN" https://europe-
 
 echo $BACKEND_URL
 
+echo "Test" >> test_file2.txt 
 while IFS= read -r line
 do
     case "$line" in
        *BACKEND_URL*) printf "%s\n" "${line/BACKEND_URL/$BACKEND_URL}" ;;
-       *) printf "%s\n" "$line" ;;
+       *) "$line" >> test_file2.txt
     esac
 done < cloudfunction/tvguide/index.js
+echo "completed"
 
 bold "Deploy Cloud Function..."
 gcloud functions deploy tvguide --region=$REGION \
@@ -121,13 +123,15 @@ bold "Prepare Dialogflow to connect to the right URL"
 CF_URL="https://${REGION}-${GOOGLE_CLOUD_PROJECT}.cloudfunctions.net/tvguide"
 echo $CF_URL
 
+echo "Test" >> test_file2.txt 
 while IFS= read -r line
 do
     case "$line" in
-       *CF_URL*) printf "%s\n" "${line/CF_URL/$BACKEND_URL}" ;;
-       *) printf "%s\n" "$line" ;;
+      *CF_URL*) printf "%s\n" "${line/CF_URL/$BACKEND_URL}" ;;
+      *) "$line" >> test_file2.txt
     esac
 done < dialogflow/agent/agent.json
+echo "completed"
 
 gcloud auth activate-service-account --key-file ../master.json
 TOKEN="$(gcloud auth print-access-token)"
