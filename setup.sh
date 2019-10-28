@@ -77,11 +77,6 @@ ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
 bold "Creating Storage bucket..."
 gsutil mb gs://$GCLOUD_STORAGE_BUCKET_NAME/
 
-bold "Zipping Intents..."
-zip -r dialogflow/agent/agent.zip dialogflow/agent
-bold "Uploading Intents to $GCLOUD_STORAGE_BUCKET_NAME..."
-gsutil cp dialogflow/agent/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
-
 bold "Create a Dialogflow Agent..."
 echo $ACCESS_TOKEN
 
@@ -130,6 +125,11 @@ do
     esac
 done < dialogflow/agent/agent-old.json
 echo "completed"
+
+bold "Zipping Intents..."
+zip -r dialogflow/agent/agent.zip dialogflow/agent
+bold "Uploading Intents to $GCLOUD_STORAGE_BUCKET_NAME..."
+gsutil cp dialogflow/agent/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
 
 gcloud auth activate-service-account --key-file ../master.json
 TOKEN="$(gcloud auth print-access-token)"
