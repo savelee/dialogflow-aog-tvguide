@@ -69,7 +69,9 @@ gcloud iam service-accounts keys create ../master.json \
   --iam-account $SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
 
 GOOGLE_APPLICATION_CREDENTIALS=../master.json
-ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
+
+gcloud auth activate-service-account --key-file ../master.json
+ACCESS_TOKEN="$(gcloud auth print-access-token)"
 
 bold "Creating Storage bucket..."
 gsutil mb gs://$GCLOUD_STORAGE_BUCKET_NAME/
@@ -87,14 +89,6 @@ curl -H "Content-Type: application/json; charset=utf-8"  \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -d $JSONPROD "https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent"
 
-IMPORTFILES="{\"agentUri\":\"gs://$GCLOUD_STORAGE_BUCKET_NAME/agent.zip\"}"
-bold "Import Intents to Prod"
-curl -X POST \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--H "Content-Type: application/json; charset=utf-8" \
--d $IMPORTFILES \
-https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:import
-
 bold "Deploy Webserver To Cloud Run..."
 docker build -t gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide cloudrun/go-tvguide-json-api
 docker push gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide
@@ -102,6 +96,9 @@ gcloud beta run deploy --image gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide \
 --platform managed --region $REGION --allow-unauthenticated
 
 ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
+
+
+bold "Prepare Cloud Function to connect to the right URL"
 
 BACKEND_URL="$(curl GET -H "Authorization: Bearer $ACCESS_TOKEN" https://europe-west1-run.googleapis.com/apis/serving.knative.dev/v1/namespaces/${GOOGLE_CLOUD_PROJECT}/services \
 | jq -r '.items[0].status.url')"
@@ -115,6 +112,28 @@ do
        *) printf "%s\n" "$line" ;;
     esac
 done < cloudfunction/tvguide/index.js
+
+bold "Prepare Dialogflow to connect to the right URL"
+
+CF_URL="https://${REGION}-${GOOGLE_CLOUD_PROJECT}.cloudfunctions.net/tvguide"
+echo $CF_URL
+
+while IFS= read -r line
+do
+    case "$line" in
+       *CF_URL*) printf "%s\n" "${line/CF_URL/$BACKEND_URL}" ;;
+       *) printf "%s\n" "$line" ;;
+    esac
+done < dialogflow/agent/agent.json
+
+IMPORTFILES="{\"agentUri\":\"gs://$GCLOUD_STORAGE_BUCKET_NAME/agent.zip\"}"
+bold "Import Intents to Prod"
+curl -X POST \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
+-H "Content-Type: application/json; charset=utf-8" \
+-d $IMPORTFILES \
+https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:restore
+
 
 bold "Eval the templates & deploy CF..."
 gcloud functions deploy tvguide --region=$REGION \

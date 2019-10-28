@@ -1,10 +1,10 @@
 {
-  "description": "My tv guide",
+  "description": "My TVGuide",
   "language": "en",
   "shortDescription": "",
   "examples": "",
   "linkToDocs": "",
-  "disableInteractionLogs": false,
+  "disableInteractionLogs": true,
   "disableStackdriverLogs": true,
   "googleAssistant": {
     "googleAssistantCompatible": true,
@@ -26,12 +26,12 @@
     "capabilities": [],
     "env": "",
     "protocolVersion": "V2",
-    "autoPreviewEnabled": false,
+    "autoPreviewEnabled": true,
     "isDeviceAgent": false
   },
   "defaultTimezone": "Europe/Madrid",
   "webhook": {
-    "url": "https://europe-west1-tvguide-257011.cloudfunctions.net/tvguide",
+    "url": "CF_URL",
     "username": "",
     "headers": {
       "": ""
@@ -43,9 +43,9 @@
   },
   "isPrivate": true,
   "customClassifierMode": "use.after",
-  "mlMinConfidence": 0.3,
+  "mlMinConfidence": 0.0,
   "supportedLanguages": [],
-  "onePlatformApiVersion": "v2beta1",
+  "onePlatformApiVersion": "v2",
   "analyzeQueryTextSentiment": false,
   "enabledKnowledgeBaseNames": [],
   "knowledgeServiceConfidenceAdjustment": -0.4,
