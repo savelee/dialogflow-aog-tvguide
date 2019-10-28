@@ -67,11 +67,8 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 bold "Saving the key..."
 gcloud iam service-accounts keys create ../master.json \
   --iam-account $SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
-
 GOOGLE_APPLICATION_CREDENTIALS=../master.json
-
-gcloud auth activate-service-account --key-file ../master.json
-ACCESS_TOKEN="$(gcloud auth print-access-token)"
+ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
 
 bold "Creating Storage bucket..."
 gsutil mb gs://$GCLOUD_STORAGE_BUCKET_NAME/
@@ -84,19 +81,11 @@ gsutil cp dialogflow/agent/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
 bold "Create a Dialogflow Agent..."
 echo $ACCESS_TOKEN
 
-JSONPROD="{\"defaultLanguageCode\":\"en\",\"displayName\":\"tvguide\",\"parent\":\"projects/$PROJECT_ID\",\"timeZone\":\"Europe/Madrid\"}"
-curl -H "Content-Type: application/json; charset=utf-8"  \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--d $JSONPROD "https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent"
-
 bold "Deploy Webserver To Cloud Run..."
 docker build -t gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide cloudrun/go-tvguide-json-api
 docker push gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide
 gcloud beta run deploy --image gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide \
 --platform managed --region $REGION --allow-unauthenticated
-
-ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
-
 
 bold "Prepare Cloud Function to connect to the right URL"
 
@@ -113,6 +102,16 @@ do
     esac
 done < cloudfunction/tvguide/index.js
 
+bold "Deploy Cloud Function..."
+gcloud functions deploy tvguide --region=$REGION \
+--memory=512MB \
+--runtime=nodejs10 \
+--source=cloudfunction/tvguide \
+--stage-bucket=$GCLOUD_STORAGE_BUCKET_NAME \
+--timeout=60s \
+--trigger-http
+--entry-point=tvguide
+
 bold "Prepare Dialogflow to connect to the right URL"
 
 CF_URL="https://${REGION}-${GOOGLE_CLOUD_PROJECT}.cloudfunctions.net/tvguide"
@@ -126,23 +125,20 @@ do
     esac
 done < dialogflow/agent/agent.json
 
+gcloud auth activate-service-account --key-file ../master.json
+TOKEN="$(gcloud auth print-access-token)"
+
+JSONPROD="{\"defaultLanguageCode\":\"en\",\"displayName\":\"tvguide\",\"parent\":\"projects/$PROJECT_ID\",\"timeZone\":\"Europe/Madrid\"}"
+curl -H "Content-Type: application/json; charset=utf-8"  \
+-H "Authorization: Bearer $TOKEN" \
+-d $JSONPROD "https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent"
+
 IMPORTFILES="{\"agentUri\":\"gs://$GCLOUD_STORAGE_BUCKET_NAME/agent.zip\"}"
 bold "Import Intents to Prod"
 curl -X POST \
--H "Authorization: Bearer $ACCESS_TOKEN" \
+-H "Authorization: Bearer $TOKEN" \
 -H "Content-Type: application/json; charset=utf-8" \
 -d $IMPORTFILES \
 https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:restore
-
-
-bold "Eval the templates & deploy CF..."
-gcloud functions deploy tvguide --region=$REGION \
---memory=512MB \
---runtime=nodejs10 \
---source=cloudfunction/tvguide \
---stage-bucket=$GCLOUD_STORAGE_BUCKET_NAME \
---timeout=60s \
---trigger-http
---entry-point=tvguide
 
 bold "Setup & Deployment complete!"
