@@ -18,6 +18,8 @@ bold "Starting the setup process in project $PROJECT_ID..."
 bold "Enable APIs..."
 gcloud services enable \
   dialogflow.googleapis.com \
+  cloudfunctions.googleapis.com \
+  iam.googleapis.com \
   logging.googleapis.com \
   monitoring.googleapis.com \
   sourcerepo.googleapis.com \
