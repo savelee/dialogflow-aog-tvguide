@@ -1,5 +1,7 @@
 #!/bin/bash
 
+gcloud auth login
+
 bold() {
   echo ". $(tput bold)" "$*" "$(tput sgr0)";
 }
