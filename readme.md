@@ -20,9 +20,10 @@ Guided one click installation from Google Cloud Shell. No client tooling require
 
 ### Create a GCP Project
 
-1. Once, you are logged into GCP console, you can create a project.  Go to the manage resources page.
-2. Click New Project
-3. Give your project the name: <yourname>-tvguide.  Click Create.  
+1. Navigate to: http://console.cloud.google.com
+2. Once you are logged into GCP console, you can create a project. Click on the dropdown, next to the Google Cloud Platform logo. It will open a pop-up.
+3. Click New Project
+4. Give your project the name: <yourname>-tvguide.  Click Create.  
 (NOTE: In case you already have a GCP account for your organization, you might see organization settings on this page as well.)
 
 4. Make sure the project is enabled, by selecting it in the top bar.
