@@ -99,13 +99,13 @@ bold "Deploy Webserver To Cloud Run..."
 docker build -t gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide cloudrun/go-tvguide-json-api
 docker push gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide
 gcloud beta run deploy --image gcr.io/${GOOGLE_CLOUD_PROJECT}/tvguide \
---platform managed --regio $REGION --allow-unauthenticated
+--platform managed --region $REGION --allow-unauthenticated
 
 BACKEND_URL=curl GET -H "Authorization: Bearer $ACCESS_TOKEN" 'https://europe-west1-run.googleapis.com/apis/serving.knative.dev/v1/namespaces/' + ${PROJECT_ID} + '/services' | jq -r '.ite
 ms[0].status.url'
 
 bold "Eval the templates & deploy CF..."
-envsubst < cloudfunction/tvguide/index.js | gcloud functions deploy tvguide--region=$REGION \
+envsubst < cloudfunction/tvguide/index.js | gcloud functions deploy tvguide --region=$REGION \
 --memory=512MB \
 --runtime=nodejs10 \
 --source=cloudfunction/tvguide \
