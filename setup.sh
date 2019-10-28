@@ -100,7 +100,7 @@ do
        *) echo "$line" >> cloudfunction/tvguide/index.js ;;
     esac
 done < cloudfunction/tvguide/index-old.js
-echo "}}" >> cloudfunction/tvguide/index.js
+echo "}" >> cloudfunction/tvguide/index.js
 
 bold "Deploy Cloud Function..."
 gcloud functions deploy tvguide --region=$REGION \
