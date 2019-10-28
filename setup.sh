@@ -101,7 +101,7 @@ echo $BACKEND_URL
 while IFS= read -r line
 do
     case "$line" in
-       *BACKEND_URL*) printf "%s\n" "${line/BACKEND_URL/$BACKEND_URL}" ;;
+       *BACKEND_URL*) echo "${line/BACKEND_URL/$BACKEND_URL}" >> cloudfunction/tvguide/index.js ;;
        *) echo "$line" >> cloudfunction/tvguide/index.js ;;
     esac
 done < cloudfunction/tvguide/index-old.js
@@ -125,7 +125,7 @@ echo $CF_URL
 while IFS= read -r line
 do
     case "$line" in
-      *CF_URL*) printf "%s\n" "${line/CF_URL/$BACKEND_URL}" ;;
+      *CF_URL*) echo "${line/CF_URL/$CF_URL}" >> dialogflow/agent/agent.json ;;
       *) echo "$line" >> dialogflow/agent/agent.json ;;
     esac
 done < dialogflow/agent/agent-old.json
