@@ -14,7 +14,7 @@ bold "Set all vars..."
 PROJECT_ID=$(gcloud info --format='value(config.project)')
 SERVICE_ACCOUNT_NAME="tvguide-app"
 REGION=europe-west1
-GCLOUD_STORAGE_BUCKET_NAME=tvguidebucket
+GCLOUD_STORAGE_BUCKET_NAME=lee-tvguide
 
 bold "Starting the setup process in project $PROJECT_ID..."
 bold "Enable APIs..."
@@ -143,6 +143,6 @@ curl -X POST \
 -H "Authorization: Bearer $TOKEN" \
 -H "Content-Type: application/json; charset=utf-8" \
 -d $IMPORTFILES \
-https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:restore
+https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent:import
 
 bold "Setup & Deployment complete!"
