@@ -12,6 +12,15 @@ This script will install the following resources:
 
 2. To start installation: `. setup.sh`
 
+## Enable the fulfillment webhook in Dialogflow
+
+1. In the Dialogflow Console, select **Fulfillment** from the menu.
+2.  **Enable** Webhooks
+3.  Enter the URL of your Cloud Function, you can find the
+    url, in the Google Cloud Functions overview. It's likely
+    https://europe-west1-[YOUR-PROJECT-ID].cloudfunctions.net/tvguide
+4. Click **Save**
+
 ## Configure Actions on Google
 
 1. Navigate to http://console.dialogflow.com and login with
