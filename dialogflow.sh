@@ -18,7 +18,7 @@ gcloud iam service-accounts keys create ../master.json \
   --iam-account $SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
 
 gcloud auth activate-service-account --key-file ../master.json
-ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
+ACCESS_TOKEN="$(gcloud auth print-access-token)"
 
 GOOGLE_APPLICATION_CREDENTIALS=../master.json
 
