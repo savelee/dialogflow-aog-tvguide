@@ -134,7 +134,7 @@ gsutil cp dialogflow/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
 gcloud auth activate-service-account --key-file master.json
 TOKEN="$(gcloud auth print-access-token)"
 
-JSONPROD="{\"defaultLanguageCode\":\"en\",\"displayName\":\"tvguide\",\"parent\":\"projects/$PROJECT_ID\",\"timeZone\":\"Africa/Casablanca\"}"
+JSONPROD="{\"defaultLanguageCode\":\"en\",\"displayName\":\"tvguide\",\"parent\":\"projects/$PROJECT_ID\",\"timeZone\":\"Europe/Madrid\"}"
 curl -H "Content-Type: application/json; charset=utf-8"  \
 -H "Authorization: Bearer $TOKEN" \
 -d $JSONPROD "https://dialogflow.googleapis.com/v2/projects/$PROJECT_ID/agent"

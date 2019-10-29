@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "My TV Guide",
   "language": "en",
   "shortDescription": "",
   "examples": "",
@@ -31,7 +31,7 @@
   },
   "defaultTimezone": "Europe/Madrid",
   "webhook": {
-    "url": "",
+    "url": "CF_URL",
     "username": "",
     "headers": {},
     "available": false,
