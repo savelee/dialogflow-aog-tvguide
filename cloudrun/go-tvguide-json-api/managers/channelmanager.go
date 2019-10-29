@@ -293,8 +293,8 @@ func GetListingsByChannelId(id int, timeStamp string) models.Channel {
 					log.Fatal("listing time format errors")
 				}
 				
-				channelRequestedTime, err :=  time.Parse(timeFormat,timeStamp)
-				if err != nil {
+				loc, _ := time.LoadLocation("Europe/Amsterdam")
+				channelRequestedTime, err := time.ParseInLocation(timeFormat, timeStamp, loc)if err != nil {
 					log.Fatal("channel time format error")
 				}
 				fmt.Println("Listing time is: ", listingTime)
