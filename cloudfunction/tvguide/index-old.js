@@ -85,8 +85,9 @@ var getChannelName = function(channelId){
     channels.set(5, 'Movie Channel');
     channels.set(6, 'Sports Channel');
     channels.set(7, 'Comedy Central');
-    channels.set(8, 'National Geographic');
-    channels.set(9, 'MTV');
+    channels.set(8, 'Cartoon Network');
+    channels.set(9, 'National Geographic');
+    channels.set(10, 'MTV');
 
     return channels.get(channelId);
 }
