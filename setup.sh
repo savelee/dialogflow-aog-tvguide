@@ -96,7 +96,7 @@ echo $BACKEND_URL
 while IFS= read -r line
 do
     case "$line" in
-       *BACKEND_URL*) echo "${line/BACKEND_URL/$BACKEND_URL}/channel" >> cloudfunction/tvguide/index.js ;;
+       *BACKEND_URL*) echo "${line/BACKEND_URL/$BACKEND_URL}" >> cloudfunction/tvguide/index.js ;;
        *) echo "$line" >> cloudfunction/tvguide/index.js ;;
     esac
 done < cloudfunction/tvguide/index-old.js
