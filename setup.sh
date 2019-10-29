@@ -69,9 +69,9 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/iam.serviceAccountKeyAdmin
 
 bold "Saving the key..."
-gcloud iam service-accounts keys create ../master.json \
+gcloud iam service-accounts keys create master.json \
   --iam-account $SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
-GOOGLE_APPLICATION_CREDENTIALS=../master.json
+GOOGLE_APPLICATION_CREDENTIALS=master.json
 ACCESS_TOKEN="$(gcloud auth application-default print-access-token)"
 
 bold "Creating Storage bucket..."
@@ -131,7 +131,7 @@ zip -r dialogflow/agent/agent.zip dialogflow/agent
 bold "Uploading Intents to $GCLOUD_STORAGE_BUCKET_NAME..."
 gsutil cp dialogflow/agent/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
 
-gcloud auth activate-service-account --key-file ../master.json
+gcloud auth activate-service-account --key-file master.json
 TOKEN="$(gcloud auth print-access-token)"
 
 JSONPROD="{\"defaultLanguageCode\":\"en\",\"displayName\":\"tvguide\",\"parent\":\"projects/$PROJECT_ID\",\"timeZone\":\"Africa/Casablanca\"}"
