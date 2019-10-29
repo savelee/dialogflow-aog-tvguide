@@ -1,11 +1,11 @@
 {
-  "description": "My TV Guide",
+  "description": "",
   "language": "en",
   "shortDescription": "",
   "examples": "",
   "linkToDocs": "",
   "disableInteractionLogs": false,
-  "disableStackdriverLogs": false,
+  "disableStackdriverLogs": true,
   "googleAssistant": {
     "googleAssistantCompatible": true,
     "project": "",
@@ -29,23 +29,21 @@
     "autoPreviewEnabled": false,
     "isDeviceAgent": false
   },
-  "defaultTimezone": "Africa/Casablanca",
+  "defaultTimezone": "Europe/Madrid",
   "webhook": {
-    "url": "CF_URL",
+    "url": "",
     "username": "",
-    "headers": {
-      "": ""
-    },
-    "available": true,
+    "headers": {},
+    "available": false,
     "useForDomains": false,
     "cloudFunctionsEnabled": false,
     "cloudFunctionsInitialized": false
   },
   "isPrivate": true,
   "customClassifierMode": "use.after",
-  "mlMinConfidence": 0.6,
+  "mlMinConfidence": 0.3,
   "supportedLanguages": [],
-  "onePlatformApiVersion": "v2beta1",
+  "onePlatformApiVersion": "v2",
   "analyzeQueryTextSentiment": false,
   "enabledKnowledgeBaseNames": [],
   "knowledgeServiceConfidenceAdjustment": -0.4,
