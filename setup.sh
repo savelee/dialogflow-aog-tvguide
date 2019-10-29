@@ -120,16 +120,16 @@ echo $CF_URL
 while IFS= read -r line
 do
     case "$line" in
-      *CF_URL*) echo "${line/CF_URL/$CF_URL}" >> dialogflow/agent/agent.json ;;
-      *) echo "$line" >> dialogflow/agent/agent.json ;;
+      *CF_URL*) echo "${line/CF_URL/$CF_URL}" >> dialogflow/agent.json ;;
+      *) echo "$line" >> dialogflow/agent.json ;;
     esac
-done < dialogflow/agent/agent-old.json
-echo "}" >> dialogflow/agent/agent.json
+done < dialogflow/agent-old.json
+echo "}" >> dialogflow/agent.json
 
 bold "Zipping Intents..."
-zip -r dialogflow/agent/agent.zip dialogflow/agent
+zip -r dialogflow/agent.zip dialogflow
 bold "Uploading Intents to $GCLOUD_STORAGE_BUCKET_NAME..."
-gsutil cp dialogflow/agent/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
+gsutil cp dialogflow/agent.zip gs://$GCLOUD_STORAGE_BUCKET_NAME/
 
 gcloud auth activate-service-account --key-file master.json
 TOKEN="$(gcloud auth print-access-token)"

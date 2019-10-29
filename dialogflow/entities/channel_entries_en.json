@@ -52,13 +52,20 @@
     "value": "8",
     "synonyms": [
       "8",
-      "National Geographic"
+      "Cartoon Network"
     ]
   },
   {
     "value": "9",
     "synonyms": [
       "9",
+      "National Geographic"
+    ]
+  },
+  {
+    "value": "10",
+    "synonyms": [
+      "10",
       "MTV"
     ]
   }
