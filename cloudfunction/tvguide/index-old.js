@@ -14,8 +14,10 @@ exports.tvguide = function(request, response){
   let url = `${TVGUIDE_WEBSERVICE}/${channelInput}`;
   
   if (requestedTime) {
-    // console.log(requestedTime); //2019-06-07T20:00:00+02:00
-    let time = moment(requestedTime).add(1,'h').format('HH:mm:ss');
+    console.log(requestedTime);
+    let offsetMin = moment().utcOffset(requestedTime)._offset;
+    console.log(offsetMin);
+    let time = moment(requestedTime).utc().add(offsetMin,'m').format('HH:mm:ss');
     url = `${TVGUIDE_WEBSERVICE}/${channelInput}/${time}`;
     console.log(url);
   }
